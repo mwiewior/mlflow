@@ -304,7 +304,8 @@ def set_span_chat_messages(
     sanitized_messages = []
     for message in messages:
         if isinstance(message, dict):
-            ChatMessage.validate_compat(message)
+            #FIXME: Workaround for Pydantic v2.0+ to avoid validation error
+            # ChatMessage.validate_compat(message)
             sanitized_messages.append(message)
         elif isinstance(message, ChatMessage):
             # NB: ChatMessage is used for both request and response messages. In OpenAI's API spec,
