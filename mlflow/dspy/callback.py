@@ -151,6 +151,7 @@ class MlflowCallback(BaseCallback):
     ) -> list[dict[str, str]]:
         # LM output is either a string or a dictionary of text and logprobs
         # https://github.com/stanfordnlp/dspy/blob/ac5bf56bb1ed7261d9637168563328c1dfeb27af/dspy/clients/lm.py#L105-L114
+        _logger.debug(f"LM outputs: {outputs}")
         # TODO: Extract tool calls once https://github.com/stanfordnlp/dspy/pull/2023 is merged
         return [
             {"role": "assistant", "content": o.get("text") if isinstance(o, dict) else o}
